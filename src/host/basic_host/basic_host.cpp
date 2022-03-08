@@ -6,6 +6,7 @@
 #include <libp2p/host/basic_host/basic_host.hpp>
 
 #include <boost/assert.hpp>
+#include <iostream>
 #include <libp2p/common/hexutil.hpp>
 #include <libp2p/crypto/key_marshaller/key_marshaller_impl.hpp>
 
@@ -60,12 +61,12 @@ namespace libp2p::host {
       for (auto &pv : i->getProtocolsWithValues()) {
         if (pv.first.code == multi::Protocol::Code::IP4) {
           if (pv.second == "0.0.0.0") {
-            is_good_addr = false;
+            std::cout << "Listening on all interfaces" << std::endl;
             break;
           }
         } else if (pv.first.code == multi::Protocol::Code::IP6) {
           if (pv.second == "::") {
-            is_good_addr = false;
+            std::cout << "Listening on all interfaces" << std::endl;
             break;
           }
         }
